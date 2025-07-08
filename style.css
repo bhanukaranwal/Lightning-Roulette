@@ -1,0 +1,272 @@
+:root {
+    --primary-color: #ffcc00;
+    --red-color: #d92b2b;
+    --black-color: #333;
+    --green-color: #008000;
+    --bg-dark: #1a1a1a;
+    --bg-light: #2c2c2c;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-dark);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 10px;
+}
+
+.casino-container {
+    background-color: var(--bg-light);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 1400px;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    text-align: center;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: var(--primary-color);
+    text-shadow: 2px 2px 4px #000;
+    margin: 0;
+}
+
+.game-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.roulette-wheel-container {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    margin-bottom: 20px;
+}
+
+.roulette-wheel {
+    width: 100%;
+    transition: transform 4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.ball {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.message-container {
+    background-color: rgba(0,0,0,0.3);
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+}
+
+#message {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* Betting Table */
+.betting-area {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.numbers-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2px;
+}
+
+.number-cell {
+    background-color: var(--green-color);
+    color: white;
+    padding: 15px 5px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    position: relative;
+}
+
+.number-cell:hover {
+    transform: scale(1.05);
+}
+
+.number-cell.red { background-color: var(--red-color); }
+.number-cell.black { background-color: var(--black-color); }
+
+.zero-cell { grid-column: 1 / -1; background-color: var(--green-color); }
+
+.outside-bets {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 5px;
+    margin-top: 5px;
+    grid-column: 1 / -1;
+}
+
+.bet-option {
+    padding: 15px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+    font-weight: bold;
+}
+
+.bet-option[data-bet-type="dozen"] { grid-column: span 2; background-color: #005A9C; }
+.bet-option[data-bet-type="column"] { grid-column: span 4; background-color: #B22222; }
+.bet-option[data-bet-type="even-odd"] { grid-column: span 3; background-color: #556B2F; }
+.bet-option[data-bet-type="color"] { grid-column: span 3; }
+.bet-option[data-bet-value="red"] { background-color: var(--red-color); }
+.bet-option[data-bet-value="black"] { background-color: var(--black-color); }
+
+.bet-chip {
+    position: absolute;
+    background-color: var(--primary-color);
+    color: black;
+    border-radius: 50%;
+    font-size: 10px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transform: translate(-50%, -50%);
+    pointer-events: none; /* Allows clicking through the chip */
+    z-index: 10;
+}
+
+
+/* Lightning Effect */
+.number-cell.lightning {
+    background-color: var(--primary-color);
+    color: #000;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 5px var(--primary-color); }
+    50% { transform: scale(1.1); box-shadow: 0 0 20px var(--primary-color); }
+    100% { transform: scale(1); box-shadow: 0 0 5px var(--primary-color); }
+}
+
+/* UI Panel */
+.ui-panel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--black-color);
+    padding: 15px;
+    border-radius: 10px;
+    gap: 15px;
+}
+
+.chips .chip {
+    background-color: #4CAF50;
+    border: 2px solid #fff;
+    color: white;
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 0 5px;
+    transition: all 0.2s;
+}
+
+.chips .chip.active {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+#spin-button, #clear-button {
+    background-color: var(--red-color);
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+#spin-button:hover { background-color: #E57373; }
+#clear-button { background-color: #005A9C; }
+#clear-button:hover { background-color: #42A5F5; }
+
+.history-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#history { display: flex; gap: 5px; }
+
+.history-item {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+}
+.history-item.red { background-color: var(--red-color); }
+.history-item.black { background-color: var(--black-color); }
+.history-item.zero { background-color: var(--green-color); }
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .numbers-grid { grid-template-columns: repeat(6, 1fr); }
+    .bet-option[data-bet-type="column"] { grid-column: span 6; }
+}
+
+@media (max-width: 768px) {
+    body { padding: 5px; }
+    .casino-container { padding: 10px; }
+    .ui-panel { flex-direction: column; }
+    .betting-controls, .action-buttons { margin-bottom: 15px; }
+    .numbers-grid { grid-template-columns: repeat(4, 1fr); }
+    .bet-option[data-bet-type="dozen"] { grid-column: span 4; }
+}
+
+@media (max-width: 480px) {
+    .roulette-wheel-container { width: 200px; height: 200px; }
+    .numbers-grid { grid-template-columns: repeat(3, 1fr); }
+    .bet-option { font-size: 14px; padding: 10px; }
+    .chips .chip { width: 40px; height: 40px; font-size: 12px; }
+    #spin-button, #clear-button { width: 100%; padding: 12px; }
+}
