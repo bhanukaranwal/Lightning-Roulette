@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ Lightning Roulette</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="casino-container">
+        <header>
+            <h1>⚡ Lightning Roulette</h1>
+            <div class="balance-container">
+                <h2>Balance: $<span id="balance">1000</span></h2>
+            </div>
+        </header>
+
+        <main class="game-area">
+            <div class="roulette-wheel-container">
+                <img src="assets/images/roulette-wheel.png" alt="Roulette Wheel" class="roulette-wheel">
+                <div class="ball"></div>
+            </div>
+
+            <div class="message-container">
+                <p id="message">Place your bets!</p>
+            </div>
+        </main>
+        
+        <div id="betting-area" class="betting-area">
+            </div>
+
+        <footer class="ui-panel">
+            <div class="betting-controls">
+                <h3>Select Chip</h3>
+                <div class="chips">
+                    <button class="chip" data-value="10">$10</button>
+                    <button class="chip active" data-value="50">$50</button>
+                    <button class="chip" data-value="100">$100</button>
+                    <button class="chip" data-value="500">$500</button>
+                </div>
+            </div>
+            <div class="action-buttons">
+                <button id="spin-button">Spin</button>
+                <button id="clear-button">Clear Bets</button>
+            </div>
+            <div class="history-container">
+                <h3>History</h3>
+                <div id="history"></div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
